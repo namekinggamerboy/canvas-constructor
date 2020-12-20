@@ -1,0 +1,6 @@
+{
+	"extends": "bamboo",
+	"parserOptions": {
+		"project": "./tsconfig.eslint.json"
+	}
+}
