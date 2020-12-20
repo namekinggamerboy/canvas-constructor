@@ -29,14 +29,14 @@ class Canvas {
 	 * @param {number} height The canvas' height in pixels.
 	 * @param {('pdf'|'svg')} [type] The canvas type.
 	 */
-	constructor(...args) {
+	constructor(width, height, context) {
 		/**
 		 * The constructed Canvas
 		 * @since 0.0.1
 		 * @type {HTMLCanvasElement}
 		 * @private
 		 */
-		this.canvas = createCanvas(...args);
+		this.canvas = createCanvas(width, height);
 
 		/**
 		 * The 2D context for this canvas
@@ -44,7 +44,7 @@ class Canvas {
 		 * @type {CanvasRenderingContext2D}
 		 * @private
 		 */
-		this.context = this.canvas ? this.canvas.getContext('2d') : null;
+		this.context = context;
 	}
 
 	/**
