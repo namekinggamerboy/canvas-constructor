@@ -2,17 +2,6 @@
 // @ts-nocheck
 const { browser, getFontHeight, InternalCanvas, textWrap } = require('./util/util');
 
-const createCanvas = browser
-	? () => null
-	: typeof InternalCanvas.createCanvas === 'function'
-		// node-canvas >=2.0.0
-		? InternalCanvas.createCanvas
-		// node-canvas <2.0.0
-		: (...args) => new InternalCanvas(...args);
-
-// This variable helps Canvas-Constructor to identify if the version
-// of canvas is older than 2.0.0 (new Canvas()) or newer (Canvas.createCanvas).
-
 class Canvas {
 
 	/**
@@ -29,14 +18,14 @@ class Canvas {
 	 * @param {number} height The canvas' height in pixels.
 	 * @param {('pdf'|'svg')} [type] The canvas type.
 	 */
-	constructor(width, height, context) {
+	constructor(canvas, context) {
 		/**
 		 * The constructed Canvas
 		 * @since 0.0.1
 		 * @type {HTMLCanvasElement}
 		 * @private
 		 */
-		this.canvas = createCanvas(width, height);
+		this.canvas = canvas;
 
 		/**
 		 * The 2D context for this canvas
